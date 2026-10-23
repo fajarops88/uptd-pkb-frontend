@@ -649,7 +649,7 @@ function isiPegawai() {
 }
 
 // Bagan dibangun OTOMATIS dari data Pejabat & Pegawai (Sheets). Pejabat urutan pertama = pimpinan
-// (kotak teratas), pejabat berikutnya di sisi kanan batang, seluruh pegawai di bawah "Petugas Operasional".
+// (kotak teratas), pejabat berikutnya di sisi kanan batang, seluruh pegawai di bawah "Penguji".
 // Urutan dan foto diatur petugas lewat menu Pejabat / Pegawai di panel pengelolaan.
 function orgAva(o, ukuran) {
   return '<span class="org-ava org-ava-' + ukuran + '">' +
@@ -670,7 +670,7 @@ HALAMAN.bagan = function (w, d) {
     if (pj.length) isi += '<div class="org-top">' + orgKartu(pj[0], 'org-utama', 'lg') + '</div>';
     pj.slice(1).forEach(function (o) { isi += '<div class="org-side">' + orgKartu(o, '', 'md') + '</div>'; });
     if (pg.length) {
-      isi += '<div class="org-label"><span>Petugas Operasional</span><b>' + fmtAngka(pg.length) + ' orang</b></div>' +
+      isi += '<div class="org-label"><span>Penguji</span><b>' + fmtAngka(pg.length) + ' orang</b></div>' +
         '<ul class="org-staff">' + pg.map(function (o) { return '<li>' + orgKartu(o, '', 'sm') + '</li>'; }).join('') + '</ul>';
     }
     isi += '</div></div>';
