@@ -670,8 +670,7 @@ HALAMAN.bagan = function (w, d) {
     if (pj.length) isi += '<div class="org-top">' + orgKartu(pj[0], 'org-utama', 'lg') + '</div>';
     pj.slice(1).forEach(function (o) { isi += '<div class="org-side">' + orgKartu(o, '', 'md') + '</div>'; });
     if (pg.length) {
-      isi += '<div class="org-label"><span>Penguji</span><b>' + fmtAngka(pg.length) + ' orang</b></div>' +
-        '<ul class="org-staff">' + pg.map(function (o) { return '<li>' + orgKartu(o, '', 'sm') + '</li>'; }).join('') + '</ul>';
+      isi += '<ul class="org-staff">' + pg.map(function (o) { return '<li>' + orgKartu(o, '', 'sm') + '</li>'; }).join('') + '</ul>';
     }
     isi += '</div></div>';
   }
