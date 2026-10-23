@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UPTD Pengujian Kendaraan Bermotor Balikpapan</title>
+  <meta name="theme-color" content="#0d2240">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="javascript:void(0)" onclick="document.getElementById('app-container').focus()">Lewati ke konten utama</a>
+
+  <!-- Overlay muat awal -->
+  <div id="loadingOverlay" class="loading-overlay" role="status" aria-live="polite">
+    <div class="spinner-lg" aria-hidden="true"></div>
+    <p>Memuat website resmi UPTD PKB&hellip;</p>
+  </div>
+
+  <!-- ===================== CANGKANG PUBLIK ===================== -->
+  <header id="site-header" class="site-header">
+    <div class="topbar">
+      <div class="container-x topbar-in">
+        <span class="topbar-item"><i class="bi bi-clock" aria-hidden="true"></i> <span id="tb-jam">Jam layanan belum diisi</span></span>
+        <a href="javascript:void(0)" class="topbar-link" onclick="navigateTo('login')"><i class="bi bi-lock" aria-hidden="true"></i> Login Petugas</a>
+      </div>
+    </div>
+    <div class="container-x mainbar">
+      <a href="javascript:void(0)" class="brand" onclick="navigateTo('beranda')" aria-label="Kembali ke beranda">
+        <span id="brand-logo" class="brand-logo"></span>
+        <span class="brand-text">
+          <span id="brand-instansi" class="brand-instansi">Dinas Perhubungan Kota Balikpapan</span>
+          <span id="brand-uptd" class="brand-uptd">UPTD Pengujian Kendaraan Bermotor</span>
+        </span>
+      </a>
+      <nav id="main-nav" class="main-nav" aria-label="Navigasi utama"></nav>
+      <div class="mainbar-actions">
+        <a id="cta-daftar" class="btn btn-gold btn-cta" href="javascript:void(0)" target="_blank" rel="noopener noreferrer">
+          <span>Daftar Uji Online</span><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+        </a>
+        <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Ganti mode tampilan terang atau gelap" title="Mode gelap/terang">
+          <i class="bi bi-moon-stars" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="icon-btn menu-toggle" onclick="bukaDrawer()" aria-label="Buka menu" aria-controls="mobile-drawer">
+          <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Drawer menu seluler -->
+  <div id="mobile-drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-backdrop" onclick="tutupDrawer()"></div>
+    <aside class="drawer-panel" role="dialog" aria-label="Menu">
+      <div class="drawer-head">
+        <strong>Menu</strong>
+        <button type="button" class="icon-btn" onclick="tutupDrawer()" aria-label="Tutup menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+      </div>
+      <nav id="drawer-nav" class="drawer-nav" aria-label="Navigasi seluler"></nav>
+      <div class="drawer-foot">
+        <a id="cta-daftar-m" class="btn btn-gold btn-block" href="javascript:void(0)" target="_blank" rel="noopener noreferrer">
+          Daftar Uji Online <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+        </a>
+        <button type="button" class="btn btn-outline btn-block" onclick="tutupDrawer();navigateTo('login')"><i class="bi bi-lock" aria-hidden="true"></i> Login Petugas</button>
+        <button type="button" class="btn btn-outline btn-block" onclick="toggleTheme()"><i class="bi bi-moon-stars" aria-hidden="true"></i> Ganti mode tampilan</button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- KONTAINER UTAMA SPA: seluruh halaman publik disuntikkan di sini -->
+  <main id="app-container" class="app-container" tabindex="-1"></main>
+
+  <footer id="site-footer" class="site-footer">
+    <div class="container-x footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span id="footer-logo" class="brand-logo brand-logo-sm"></span>
+          <div>
+            <div id="footer-instansi" class="footer-instansi"></div>
+            <div id="footer-uptd" class="footer-uptd"></div>
+          </div>
+        </div>
+        <address id="footer-kontak" class="footer-kontak"></address>
+      </div>
+      <div>
+        <h2 class="footer-h">Tautan</h2>
+        <ul id="footer-links" class="footer-links"></ul>
+      </div>
+      <div>
+        <h2 class="footer-h">Berlangganan Pengumuman</h2>
+        <p class="footer-p">Dapatkan pengumuman resmi UPTD langsung ke email Anda.</p>
+        <form id="form-langganan" class="subscribe" onsubmit="submitLangganan(event)" novalidate>
+          <label for="sub-email" class="sr-only">Alamat email</label>
+          <input id="sub-email" type="email" class="input" placeholder="nama@email.com" autocomplete="email" maxlength="120" required>
+          <button type="submit" class="btn btn-gold" id="btn-langganan">Berlangganan</button>
+        </form>
+        <p class="footer-note"><i class="bi bi-shield-check" aria-hidden="true"></i> Email hanya dipakai untuk mengirim pengumuman resmi UPTD dan dapat dihentikan kapan saja melalui tautan di setiap email.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container-x footer-bottom-in">
+        <span id="footer-copy">&copy; Pemerintah Kota Balikpapan</span>
+        <span>Halaman ini dikelola oleh petugas UPTD.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Navigasi bawah (seluler) -->
+  <nav id="bottom-nav" class="bottom-nav" aria-label="Navigasi cepat">
+    <a href="javascript:void(0)" class="bn-item" data-bn="beranda" onclick="navigateTo('beranda')"><i class="bi bi-house-door" aria-hidden="true"></i><span>Beranda</span></a>
+    <a href="javascript:void(0)" class="bn-item" data-bn="tarif" onclick="navigateTo('tarif')"><i class="bi bi-cash-coin" aria-hidden="true"></i><span>Layanan</span></a>
+    <a href="javascript:void(0)" class="bn-item" data-bn="berita" onclick="navigateTo('berita')"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Berita</span></a>
+    <a href="javascript:void(0)" class="bn-item" data-bn="kontak" onclick="navigateTo('kontak')"><i class="bi bi-chat-dots" aria-hidden="true"></i><span>Kontak</span></a>
+    <a href="javascript:void(0)" class="bn-item" data-bn="menu" onclick="bukaDrawer()"><i class="bi bi-grid" aria-hidden="true"></i><span>Menu</span></a>
+  </nav>
+
+  <!-- ===================== CANGKANG PENGELOLAAN (ADMIN) ===================== -->
+  <div id="admin-root" class="admin-root" hidden></div>
+
+  <!-- Toast, modal -->
+  <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+  <div id="modal-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script>
+    // Token berhenti berlangganan dari URL halaman ini (divalidasi format UUID).
+    // Satu-satunya parameter URL yang dipakai. Tautan di email mengarah ke sini
+    // dengan ?unsub=..., bukan lagi ke URL Apps Script.
+    (function () {
+      var m = String(location.search || '').match(/[?&]unsub=([0-9a-fA-F-]{36})/);
+      window.__UNSUB__ = m ? m[1] : '';
+    })();
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
