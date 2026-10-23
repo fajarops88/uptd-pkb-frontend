@@ -648,13 +648,40 @@ function isiPegawai() {
   el.innerHTML = h.length ? '<div class="person-grid">' + h.map(kartuOrang).join('') + '</div>' : kosong('bi-people', q ? 'Tidak ada pegawai yang cocok.' : 'Data pegawai belum diisi.');
 }
 
+// Bagan dibangun OTOMATIS dari data Pejabat & Pegawai (Sheets). Pejabat urutan pertama = pimpinan
+// (kotak teratas), pejabat berikutnya di sisi kanan batang, seluruh pegawai di bawah "Petugas Operasional".
+// Urutan dan foto diatur petugas lewat menu Pejabat / Pegawai di panel pengelolaan.
+function orgAva(o, ukuran) {
+  return '<span class="org-ava org-ava-' + ukuran + '">' +
+    (o.foto ? imgTag(o.foto, ukuran === 'lg' ? 200 : 140, o.nama) : '<i class="bi bi-person-fill" aria-hidden="true"></i>') + '</span>';
+}
+function orgKartu(o, kelas, ukuran) {
+  return '<div class="org-card ' + kelas + '">' + orgAva(o, ukuran) +
+    '<strong class="org-nama">' + esc(o.nama) + '</strong><span class="org-jab">' + esc(o.jabatan) + '</span></div>';
+}
 HALAMAN.bagan = function (w, d) {
+  var pj = d.pejabat || [], pg = d.pegawai || [];
   var id = d.config.bagan_file_id;
-  w.innerHTML = bungkus(heroHalaman('Bagan Organisasi', 'Struktur organisasi UPTD Pengujian Kendaraan Bermotor.', 'Organisasi'),
-    id ? '<div class="card card-pad"><button type="button" class="w-100" style="border:0;background:none;padding:0;cursor:zoom-in" onclick="bukaBagan()" aria-label="Perbesar bagan organisasi">' +
+  var isi = '';
+  if (!pj.length && !pg.length) {
+    isi = kosong('bi-diagram-3', 'Data pejabat dan pegawai belum diisi oleh petugas.');
+  } else {
+    isi = '<div class="org"><div class="org-body">';
+    if (pj.length) isi += '<div class="org-top">' + orgKartu(pj[0], 'org-utama', 'lg') + '</div>';
+    pj.slice(1).forEach(function (o) { isi += '<div class="org-side">' + orgKartu(o, '', 'md') + '</div>'; });
+    if (pg.length) {
+      isi += '<div class="org-label"><span>Petugas Operasional</span><b>' + fmtAngka(pg.length) + ' orang</b></div>' +
+        '<ul class="org-staff">' + pg.map(function (o) { return '<li>' + orgKartu(o, '', 'sm') + '</li>'; }).join('') + '</ul>';
+    }
+    isi += '</div></div>';
+  }
+  if (id) {
+    isi += '<div class="card card-pad mt-3"><h2>Bagan dalam bentuk gambar</h2>' +
+      '<button type="button" class="w-100" style="border:0;background:none;padding:0;cursor:zoom-in" onclick="bukaBagan()" aria-label="Perbesar bagan organisasi">' +
       '<div class="article-img" style="margin:0">' + imgTag(id, 1400, 'Bagan organisasi') + '</div></button>' +
-      '<p class="hint text-center mt-1 mb-0"><i class="bi bi-zoom-in" aria-hidden="true"></i> Klik gambar untuk memperbesar</p></div>'
-      : kosong('bi-diagram-3', 'Bagan organisasi belum diunggah oleh petugas.'));
+      '<p class="hint text-center mt-1 mb-0"><i class="bi bi-zoom-in" aria-hidden="true"></i> Klik gambar untuk memperbesar</p></div>';
+  }
+  w.innerHTML = bungkus(heroHalaman('Bagan Organisasi', 'Struktur organisasi UPTD Pengujian Kendaraan Bermotor.', 'Organisasi'), isi);
 };
 function bukaBagan() { bukaLightbox([{ id: AppState.data.config.bagan_file_id, judul: 'Bagan Organisasi' }], 0); }
 

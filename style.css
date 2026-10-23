@@ -385,6 +385,51 @@ body:not(.admin-mode) { padding-bottom: 64px; }
 .person-body h3 { font-size: 15px; margin: 0 0 2px; }
 .person-body p { margin: 0; font-size: 13px; color: var(--muted); }
 
+/* Bagan organisasi otomatis */
+.org { overflow-x: hidden; padding: 4px 0 8px; }
+.org-body { position: relative; max-width: 1000px; margin: 0 auto; }
+.org-body::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--border); }
+.org-card { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px; padding: 14px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); box-shadow: var(--shadow-1); }
+.org-utama { border: 2px solid var(--blue); }
+[data-theme="dark"] .org-utama { border-color: var(--link); }
+.org-nama { color: var(--link); font-size: 14px; line-height: 1.3; overflow-wrap: anywhere; }
+.org-utama .org-nama { font-size: 16px; }
+.org-jab { color: var(--muted); font-size: 12.5px; line-height: 1.35; overflow-wrap: anywhere; }
+.org-ava { display: flex; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; background: var(--bg-alt); color: var(--muted); border: 3px solid var(--gold); margin-bottom: 6px; flex: 0 0 auto; }
+.org-ava img { width: 100%; height: 100%; object-fit: cover; }
+.org-ava-lg { width: 64px; height: 64px; font-size: 30px; }
+.org-ava-md { width: 56px; height: 56px; font-size: 26px; }
+.org-ava-sm { width: 50px; height: 50px; font-size: 24px; }
+.org-top { position: relative; width: min(100%, 320px); margin: 0 auto; }
+.org-side { position: relative; width: min(100%, 280px); margin: 18px auto 0; }
+@media (min-width: 720px) {
+  .org-side { width: auto; margin: 18px 0 0 50%; padding-left: 28px; display: flex; }
+  .org-side .org-card { width: 280px; max-width: 100%; }
+  .org-side::before { content: ''; position: absolute; left: 0; top: 50%; width: 28px; height: 2px; margin-top: -1px; background: var(--border); }
+}
+.org-label { position: relative; z-index: 1; width: fit-content; max-width: 100%; margin: 24px auto 0; padding: 2px 14px; background: var(--bg); color: var(--muted); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; text-align: center; }
+.org-label b { margin-left: 8px; color: var(--heading); }
+.org-staff { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px 16px; }
+.org-staff li { position: relative; padding-top: 22px; }
+.org-staff li::before { content: ''; position: absolute; left: 50%; top: 0; width: 2px; height: 22px; margin-left: -1px; background: var(--border); }
+.org-staff li::after { content: ''; position: absolute; top: 0; left: -8px; right: -8px; height: 2px; background: var(--border); }
+.org-staff li .org-card { height: 100%; }
+@media (max-width: 639px) {
+  .org-staff li:nth-child(2n+1)::after { left: 50%; }
+  .org-staff li:nth-child(2n)::after { right: 50%; }
+}
+@media (min-width: 640px) { .org-staff { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 640px) and (max-width: 899px) {
+  .org-staff li:nth-child(3n+1)::after { left: 50%; }
+  .org-staff li:nth-child(3n)::after { right: 50%; }
+}
+@media (min-width: 900px) {
+  .org-staff { grid-template-columns: repeat(4, 1fr); }
+  .org-staff li:nth-child(4n+1)::after { left: 50%; }
+  .org-staff li:nth-child(4n)::after { right: 50%; }
+}
+.org-staff li:last-child::after { right: 50%; }
+
 /* Syarat & alur */
 .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .checklist li { display: flex; gap: 12px; padding: 14px 16px; }
