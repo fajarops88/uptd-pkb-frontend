@@ -5,15 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>UPTD Pengujian Kendaraan Bermotor Balikpapan</title>
   <meta name="theme-color" content="#0d2240">
+  <meta name="description" content="Website resmi UPTD Pengujian Kendaraan Bermotor (PKB) Dinas Perhubungan Kota Balikpapan: layanan dan tarif uji berkala, syarat dan alur pengujian, regulasi, berita, serta kontak pengaduan.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="UPTD Pengujian Kendaraan Bermotor Balikpapan">
+  <meta property="og:description" content="Informasi resmi layanan pengujian berkala kendaraan bermotor di Kota Balikpapan.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 4 56 12v18c0 15-10 26-24 30C18 56 8 45 8 30V12z' fill='%230d2240' stroke='%23fdbf4a' stroke-width='3'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://script.google.com">
+  <link rel="preconnect" href="https://script.googleusercontent.com">
+  <!-- Font dan ikon dimuat tanpa memblokir tampilan awal -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  </noscript>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <a class="skip-link" href="javascript:void(0)" onclick="document.getElementById('app-container').focus()">Lewati ke konten utama</a>
+  <a class="skip-link" href="#" onclick="document.getElementById('app-container').focus()">Lewati ke konten utama</a>
 
   <!-- Overlay muat awal -->
   <div id="loadingOverlay" class="loading-overlay" role="status" aria-live="polite">
@@ -26,11 +39,11 @@
     <div class="topbar">
       <div class="container-x topbar-in">
         <span class="topbar-item"><i class="bi bi-clock" aria-hidden="true"></i> <span id="tb-jam">Jam layanan belum diisi</span></span>
-        <a href="javascript:void(0)" class="topbar-link" onclick="navigateTo('login')"><i class="bi bi-lock" aria-hidden="true"></i> Login Petugas</a>
+        <a href="#" class="topbar-link" onclick="navigateTo('login')"><i class="bi bi-lock" aria-hidden="true"></i> Login Petugas</a>
       </div>
     </div>
     <div class="container-x mainbar">
-      <a href="javascript:void(0)" class="brand" onclick="navigateTo('beranda')" aria-label="Kembali ke beranda">
+      <a href="#" class="brand" onclick="navigateTo('beranda')">
         <span id="brand-logo" class="brand-logo"></span>
         <span class="brand-text">
           <span id="brand-instansi" class="brand-instansi">Dinas Perhubungan Kota Balikpapan</span>
@@ -39,7 +52,7 @@
       </a>
       <nav id="main-nav" class="main-nav" aria-label="Navigasi utama"></nav>
       <div class="mainbar-actions">
-        <a id="cta-daftar" class="btn btn-gold btn-cta" href="javascript:void(0)" target="_blank" rel="noopener noreferrer">
+        <a id="cta-daftar" class="btn btn-gold btn-cta" href="#" target="_blank" rel="noopener noreferrer">
           <span>Daftar Uji Online</span><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
         </a>
         <button type="button" class="icon-btn theme-toggle" onclick="toggleTheme()" aria-label="Ganti mode tampilan terang atau gelap" title="Mode gelap/terang">
@@ -62,7 +75,7 @@
       </div>
       <nav id="drawer-nav" class="drawer-nav" aria-label="Navigasi seluler"></nav>
       <div class="drawer-foot">
-        <a id="cta-daftar-m" class="btn btn-gold btn-block" href="javascript:void(0)" target="_blank" rel="noopener noreferrer">
+        <a id="cta-daftar-m" class="btn btn-gold btn-block" href="#" target="_blank" rel="noopener noreferrer">
           Daftar Uji Online <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
         </a>
         <button type="button" class="btn btn-outline btn-block" onclick="tutupDrawer();navigateTo('login')"><i class="bi bi-lock" aria-hidden="true"></i> Login Petugas</button>
@@ -111,11 +124,11 @@
 
   <!-- Navigasi bawah (seluler) -->
   <nav id="bottom-nav" class="bottom-nav" aria-label="Navigasi cepat">
-    <a href="javascript:void(0)" class="bn-item" data-bn="beranda" onclick="navigateTo('beranda')"><i class="bi bi-house-door" aria-hidden="true"></i><span>Beranda</span></a>
-    <a href="javascript:void(0)" class="bn-item" data-bn="tarif" onclick="navigateTo('tarif')"><i class="bi bi-cash-coin" aria-hidden="true"></i><span>Layanan</span></a>
-    <a href="javascript:void(0)" class="bn-item" data-bn="berita" onclick="navigateTo('berita')"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Berita</span></a>
-    <a href="javascript:void(0)" class="bn-item" data-bn="kontak" onclick="navigateTo('kontak')"><i class="bi bi-chat-dots" aria-hidden="true"></i><span>Kontak</span></a>
-    <a href="javascript:void(0)" class="bn-item" data-bn="menu" onclick="bukaDrawer()"><i class="bi bi-grid" aria-hidden="true"></i><span>Menu</span></a>
+    <a href="#" class="bn-item" data-bn="beranda" onclick="navigateTo('beranda')"><i class="bi bi-house-door" aria-hidden="true"></i><span>Beranda</span></a>
+    <a href="#" class="bn-item" data-bn="tarif" onclick="navigateTo('tarif')"><i class="bi bi-cash-coin" aria-hidden="true"></i><span>Layanan</span></a>
+    <a href="#" class="bn-item" data-bn="berita" onclick="navigateTo('berita')"><i class="bi bi-newspaper" aria-hidden="true"></i><span>Berita</span></a>
+    <a href="#" class="bn-item" data-bn="kontak" onclick="navigateTo('kontak')"><i class="bi bi-chat-dots" aria-hidden="true"></i><span>Kontak</span></a>
+    <a href="#" class="bn-item" data-bn="menu" onclick="bukaDrawer()"><i class="bi bi-grid" aria-hidden="true"></i><span>Menu</span></a>
   </nav>
 
   <!-- ===================== CANGKANG PENGELOLAAN (ADMIN) ===================== -->
@@ -125,7 +138,6 @@
   <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
   <div id="modal-root"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
   <script>
     // Token berhenti berlangganan dari URL halaman ini (divalidasi format UUID).
     // Satu-satunya parameter URL yang dipakai. Tautan di email mengarah ke sini
@@ -135,6 +147,6 @@
       window.__UNSUB__ = m ? m[1] : '';
     })();
   </script>
-  <script src="app.js"></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
